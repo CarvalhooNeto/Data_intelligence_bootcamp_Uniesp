@@ -8,12 +8,12 @@ import io
 def extract_load_from_zip(db_conn: Connectable,
         table: str,
         schema: str = "sa_eleicoes"):
-    # 1) Configuração da URL 
+    
     
     url_zip = "https://cdn.tse.jus.br/estatistica/sead/odsele/prestacao_contas/prestacao_de_contas_eleitorais_candidatos_2024.zip"
     print(f"connection succesfully! Reading url: {url_zip}")
     
-    # 2) Baixar o arquivo ZIP
+    
     response = requests.get(url_zip, stream=True, timeout= 240)
     if response.status_code == 200:
         zip_buffer = io.BytesIO()
@@ -30,10 +30,10 @@ def extract_load_from_zip(db_conn: Connectable,
 
         csv_files = [f for f in file_list if f.startswith("despesas_contratadas")]
 
-        # 4) Processar cada arquivo no ZIP
+        
         if_exists = "replace"
         for csv in csv_files: 
-                # Ler o arquivo CSV em um DataFrame
+                
                 print(f"Processing file: {csv}")
 
                 with zip_ref.open(csv) as file:
