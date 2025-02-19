@@ -1,21 +1,154 @@
-
 version: 2
 
 models:
-  - name: my_first_dbt_model
-    description: "A starter dbt model"
+  - name: cleaned_data
+    description: "A cleaned and standardized model for election contracted expenses data"
     columns:
-      - name: id
-        description: "The primary key for this table"
-        data_tests:
-          - unique
+      - name: DT_GERACAO
+        description: "Date when the file was generated"
+        tests:
           - not_null
 
-  - name: my_second_dbt_model
-    description: "A starter dbt model"
-    columns:
-      - name: id
-        description: "The primary key for this table"
-        data_tests:
-          - unique
+      - name: HH_GERACAO
+        description: "Time when the file was generated"
+
+      - name: AA_ELEICAO
+        description: "Year of the election associated with the expense"
+        tests:
           - not_null
+
+      - name: CD_TIPO_ELEICAO
+        description: "Code identifying the type of election"
+
+      - name: NM_TIPO_ELEICAO
+        description: "Name of the election type (e.g., General Election, Municipal Election)"
+
+      - name: CD_ELEICAO
+        description: "Unique code identifying the specific election"
+
+      - name: DS_ELEICAO
+        description: "Description of the election (e.g., Municipal Elections)"
+
+      - name: DT_ELEICAO
+        description: "Date of the election"
+
+      - name: ST_TURNO
+        description: "Round of the election (1 for first round, 2 for second round)"
+
+      - name: TP_PRESTACAO_CONTAS
+        description: "Type of account reporting (partial or final)"
+
+      - name: DT_PRESTACAO_CONTAS
+        description: "Date when the account reporting was submitted"
+
+      - name: SQ_PRESTADOR_CONTAS
+        description: "Unique identifier for the account submitter"
+
+      - name: SG_UF
+        description: "State abbreviation (e.g., SP, RJ, PB)"
+        tests:
+          - not_null
+
+      - name: SG_UE
+        description: "Electoral Unit Code"
+
+      - name: NM_UE
+        description: "Name of the Electoral Unit"
+
+      - name: NR_CNPJ_PRESTADOR_CONTA
+        description: "CNPJ (Corporate Taxpayer Registry) number of the account submitter"
+        tests:
+          - not_null
+          - unique
+
+      - name: CD_CARGO
+        description: "Code representing the contested position (e.g., Mayor, Councilor)"
+
+      - name: DS_CARGO
+        description: "Description of the contested position"
+        tests:
+          - not_null
+
+      - name: SQ_CANDIDATO
+        description: "Unique identifier for the candidate"
+
+      - name: NR_CANDIDATO
+        description: "Candidate's number during the election"
+
+      - name: NM_CANDIDATO
+        description: "Candidate's full name"
+
+      - name: NR_CPF_CANDIDATO
+        description: "Candidate's CPF (Individual Taxpayer Registry) number"
+        tests:
+          - unique
+
+      - name: NR_PARTIDO
+        description: "Party number associated with the candidate"
+
+      - name: SG_PARTIDO
+        description: "Party abbreviation (e.g., PT, PSDB, DEM)"
+
+      - name: NM_PARTIDO
+        description: "Party name (e.g., Workers' Party, Social Democratic Party)"
+
+      - name: DS_TIPO_FORNECEDOR
+        description: "Type of supplier (e.g., Individual, Legal Entity)"
+
+      - name: NR_CPF_CNPJ_FORNECEDOR
+        description: "Supplier's CPF or CNPJ number"
+        tests:
+          - not_null
+          - unique
+
+      - name: NM_FORNECEDOR
+        description: "Supplier's name"
+
+      - name: DS_CNAE_FORNECEDOR
+        description: "Supplier's CNAE (Economic Activity Code)"
+
+      - name: DS_TIPO_DOCUMENTO
+        description: "Description of the document type related to the expense"
+
+      - name: NR_DOCUMENTO
+        description: "Number of the document related to the expense"
+
+      - name: CD_ORIGEM_DESPESA
+        description: "Code representing the origin of the expense"
+
+      - name: DS_ORIGEM_DESPESA
+        description: "Description of the origin of the expense"
+
+      - name: DT_DESPESA
+        description: "Date when the expense was made"
+
+      - name: DS_DESPESA
+        description: "Detailed description of the expense"
+
+      - name: VR_DESPESA_CONTRATADA
+        description: "Total contracted expense value"
+        tests:
+          - not_null
+          - accepted_values:
+              values: ["numeric"]
+
+      - name: SG_UF_FORNECEDOR
+        description: "State abbreviation of the supplier"
+
+      - name: NM_MUNICIPIO_FORNECEDOR
+        description: "Municipality name of the supplier"
+
+      - name: SQ_CANDIDATO_FORNECEDOR
+        description: "Unique identifier for the supplier candidate"
+
+      - name: CD_CARGO_FORNECEDOR
+        description: "Code for the supplier's contested position"
+
+      - name: DS_CARGO_FORNECEDOR
+        description: "Description of the supplier's contested position"
+
+      - name: SG_PARTIDO_FORNECEDOR
+        description: "Party abbreviation of the supplier"
+
+      - name: NM_PARTIDO_FORNECEDOR
+        description: "Party name of the supplier"

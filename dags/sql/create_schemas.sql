@@ -1,0 +1,2 @@
+CREATE SCHEMA IF NOT EXISTS sa_eleicoes;
+CREATE SCHEMA IF NOT EXISTS dim_eleicoes;

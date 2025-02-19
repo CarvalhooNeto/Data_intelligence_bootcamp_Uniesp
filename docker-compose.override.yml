@@ -2,4 +2,4 @@ version: '3.8'
 services:
   postgres:
     ports:
-      - "5433:5432"  # Mapeia a porta 5432 do container para 5433 no host
+      - "5433:5432"  
